@@ -4,10 +4,55 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    overflow-x: hidden;
 }
 
+/* ---------- Floating Yoga Background ---------- */
+.floating-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.float {
+    position: absolute;
+    opacity: 0.15;
+    animation: floatSlow 25s infinite ease-in-out;
+    filter: blur(0.3px);
+}
+
+.yoga-a {
+    width: 220px;
+    top: 15%;
+    left: 5%;
+}
+
+.yoga-b {
+    width: 260px;
+    top: 50%;
+    right: 8%;
+    animation-duration: 30s;
+}
+
+.yoga-c {
+    width: 180px;
+    bottom: 10%;
+    left: 40%;
+    animation-duration: 35s;
+}
+
+@keyframes floatSlow {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -30px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* ---------- Content ---------- */
 .header {
-    padding: 80px;
+    padding: 80px 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .header h1 {
@@ -23,9 +68,8 @@ body {
     padding: 12px 25px;
     background: #2f6b3f;
     color: white;
-    text-decoration: none;
     border-radius: 25px;
-    font-size: 16px;
+    text-decoration: none;
     border: none;
     cursor: pointer;
 }
@@ -33,25 +77,37 @@ body {
 .features {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin: 50px;
+    position: relative;
+    z-index: 1;
 }
 
 .card {
     background: white;
     padding: 20px;
     margin: 15px;
-    border-radius: 12px;
-    width: 250px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    width: 260px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ---------- Form ---------- */
+.title {
+    margin-top: 50px;
+    position: relative;
+    z-index: 1;
 }
 
 .form {
     background: white;
     width: 360px;
-    margin: auto;
+    margin: 30px auto;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1;
 }
 
 .form input,
@@ -62,4 +118,11 @@ body {
     margin: 8px 0;
     border-radius: 8px;
     border: 1px solid #ccc;
+}
+
+footer {
+    margin: 40px 0;
+    color: #555;
+    position: relative;
+    z-index: 1;
 }

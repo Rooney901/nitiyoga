@@ -1,0 +1,112 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Successful – Nitiyoga</title>
+    <!-- Google Fonts for a beautiful look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('images/yoga3.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dark overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: -1;
+        }
+
+        /* Stylish heading */
+        h1 {
+            font-family: 'Great Vibes', cursive; /* Elegant script font */
+            font-size: 70px;
+            background: linear-gradient(90deg, #fbc2eb, #a6c1ee); /* gradient color */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        /* Subtitle paragraph */
+        p {
+            font-size: 24px;
+            font-weight: 500;
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
+        /* Home button */
+        .home-link {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #fff;
+            background: #27ae60;
+            padding: 12px 25px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .home-link:hover {
+            background: #2ecc71;
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="home-link">Home</a>
+
+<h1>Registration Successful! 🎉</h1>
+<p>Welcome to the world of yoga with Nitiyoga 🧘</p>
+
+</body>
+</html>

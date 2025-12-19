@@ -29,9 +29,10 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
         return response.json();
     })
     .then(data => {
-        alert("Welcome to Nitiyoga 🧘");
         console.log("Created user:", data);
         document.getElementById("registerForm").reset();
+        // Redirect to success page
+        window.location.href = "registration-success.html";
     })
     .catch(error => {
         alert(error.message);

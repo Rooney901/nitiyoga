@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users – Nitiyoga</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .users-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #27ae60;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .no-users {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="users-container">
+    <h2>Registered Users 🧘</h2>
+    <table id="usersTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Medical Issues</th>
+                <th>Fee Status</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody id="usersBody">
+            <!-- Users will be inserted here dynamically -->
+        </tbody>
+    </table>
+    <div id="message" class="no-users"></div>
+</div>
+
+<script>
+async function loadUsers() {
+    const usersBody = document.getElementById("usersBody");
+    const messageDiv = document.getElementById("message");
+
+    try {
+        const res = await fetch("http://localhost:8080/users");
+        if (!res.ok) throw new Error("Failed to fetch users");
+
+        const users = await res.json();
+
+        if (users.length === 0) {
+            messageDiv.innerText = "No users registered yet.";
+            return;
+        }
+
+        // Clear previous data if any
+        usersBody.innerHTML = "";
+
+        users.forEach(user => {
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.userName}</td>
+                <td>${user.email}</td>
+                <td>${user.contactNumber}</td>
+                <td>${user.dateOfBirth}</td>
+                <td>${user.gender}</td>
+                <td>${user.medicalIssues || '-'}</td>
+                <td>${user.feeStatus}</td>
+                <td>${user.active}</td>
+            `;
+            usersBody.appendChild(tr);
+        });
+
+    } catch (err) {
+        messageDiv.innerText = err.message;
+    }
+}
+
+// Load users when page loads
+window.onload = loadUsers;
+</script>
+
+</body>
+</html>
