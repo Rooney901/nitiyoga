@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register – Nitiyoga</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h2 class="title">Join Nitiyoga 🧘</h2>
+
+<form id="registerForm" class="form">
+    <input type="text" id="userName" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="contactNumber" placeholder="Contact Number">
+
+    <label>Date of Birth</label>
+    <input type="date" id="dateOfBirth">
+
+    <label>Gender</label>
+    <select id="gender">
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+        <option value="OTHER">Other</option>
+    </select>
+
+    <textarea id="medicalIssues" placeholder="Medical issues (if any)"></textarea>
+
+    <button type="submit" class="btn">Register</button>
+</form>
+
+<script src="js/register.js"></script>
+</body>
+</html>

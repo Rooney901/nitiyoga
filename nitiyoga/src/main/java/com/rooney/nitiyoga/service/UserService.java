@@ -1,6 +1,7 @@
 package com.rooney.nitiyoga.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.rooney.nitiyoga.entity.User;
 
@@ -14,9 +15,9 @@ public interface UserService {
 
     public void deleteUser(Long id);
 
-    public User findUserByEmail(String email);
+    public Optional<User> findUserByEmail(String email);
 
     public List<User> getAllUsers();
 
-    public User findUserByUserName(String userName);
+    public List<User> findUserByUserName(String userName);
 }

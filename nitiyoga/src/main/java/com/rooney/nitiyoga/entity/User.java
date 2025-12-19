@@ -2,7 +2,6 @@ package com.rooney.nitiyoga.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import com.rooney.nitiyoga.enums.FeeStatus;
 import com.rooney.nitiyoga.enums.Gender;

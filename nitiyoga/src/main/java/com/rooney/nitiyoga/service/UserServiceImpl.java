@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.rooney.nitiyoga.entity.User;
 import com.rooney.nitiyoga.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -25,6 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User createUser(User user) {
         if (user == null) {
             return null;
@@ -46,7 +49,6 @@ public class UserServiceImpl implements UserService {
         }
         User existing = existingOpt.get();
 
-        // Update only fields that are provided (non-null). Preserve createdAt and id.
         if (user.getEmail() != null) {
             existing.setEmail(user.getEmail());
         }
@@ -85,11 +87,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        if (email == null) {
-            return null;
-        }
-        return userRepository.findByEmail(email).orElse(null);
+    public Optional<User> findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     @Override
@@ -98,11 +97,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByUserName(String userName) {
+    public List<User> findUserByUserName(String userName) {
         if (userName == null) {
-            return null;
+            return List.of();
         }
-        return userRepository.findByUserName(userName).orElse(null);
+        return userRepository.searchByUserName(userName);
     }
 
 }
