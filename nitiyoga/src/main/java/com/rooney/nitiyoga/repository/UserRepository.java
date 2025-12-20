@@ -15,6 +15,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
 
+    List<User> findByUserNameContainingIgnoreCase(String userName);
+
+    List<User> findTop10ByUserNameContainingIgnoreCase(String userName);
+
     @Query("SELECT u FROM User u WHERE LOWER(u.userName) LIKE LOWER(CONCAT('%', :name, '%'))")
     List<User> searchByUserName(@Param("name") String name);
     //List<User> findByUserName(String userName);

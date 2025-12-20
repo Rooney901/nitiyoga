@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark Attendance - NitiYoga</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px 40px;
+            margin-top: 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 25px;
+            color: #4a148c;
+        }
+
+        /* Inputs */
+        input[type="date"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input[type="date"]:focus,
+        input[type="text"]:focus {
+            border-color: #4a148c;
+            outline: none;
+            box-shadow: 0 0 5px rgba(74,20,140,0.4);
+        }
+
+        /* Suggestions */
+        #suggestions {
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fafafa;
+        }
+
+        #suggestions label {
+            display: block;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #suggestions label:hover {
+            background-color: #e1bee7;
+        }
+
+        /* Selected users */
+        #selectedUsers {
+            margin-top: 20px;
+            background-color: #f3e5f5;
+            border-radius: 12px;
+            padding: 10px 15px;
+        }
+
+        #selectedUsers strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #6a1b9a;
+        }
+
+        #selectedList span {
+            display: inline-block;
+            background-color: #ce93d8;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin: 3px 5px 3px 0;
+            font-size: 14px;
+        }
+
+        /* Button */
+        #submitBtn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #4a148c, #ab47bc);
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #submitBtn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        #submitBtn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74,20,140,0.3);
+        }
+
+        /* Scrollbar style for suggestions */
+        #suggestions::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #suggestions::-webkit-scrollbar-thumb {
+            background: #ab47bc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>NitiYoga Attendance</h2>
+
+        <label for="adminUser">Select Admin:</label>
+        <select id="adminUser">
+            <option value="">-- Select Admin --</option>
+            <option value="NITI">Niti</option>
+            <option value="REENA">Reena</option>
+            <option value="AMRUTHA">Amrutha</option>
+            <option value="SHAHEEN">Shaheen</option>
+        </select>
+
+        <label for="attendanceDate">Select Date:</label>
+        <input type="date" id="attendanceDate" onchange="toggleSubmit()">
+
+        <label for="searchUser">Search User:</label>
+        <input type="text"
+               id="searchUser"
+               placeholder="Type username..."
+               onkeyup="suggestUsers()">
+
+        <div id="suggestions"></div>
+
+        <div id="selectedUsers">
+            <strong>Selected Users:</strong>
+            <div id="selectedList"></div>
+        </div>
+
+        <button id="submitBtn" onclick="submitAttendance()" disabled>
+            Submit Attendance
+        </button>
+    </div>
+
+    <script src="/js/attendance.js"></script>
+</body>
+</html>
