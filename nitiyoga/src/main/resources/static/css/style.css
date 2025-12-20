@@ -7,6 +7,31 @@ body {
     overflow-x: hidden;
 }
 
+.top-right-nav {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 10;
+}
+
+.top-right-nav .admin-tab {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    color: #27ae60;
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 2px solid #27ae60;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.top-right-nav .admin-tab:hover {
+    background: #27ae60;
+    color: white;
+    transform: scale(1.05);
+}
+
+
 /* ---------- Floating Yoga Background ---------- */
 .floating-bg {
     position: fixed;

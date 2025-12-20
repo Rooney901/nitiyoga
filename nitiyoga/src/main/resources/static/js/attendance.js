@@ -50,10 +50,11 @@ function suggestUsers() {
                 usersMap[user.id] = user;
 
                 suggestions.innerHTML += `
-                    <div>
-                        <input id="user-checkbox-${user.id}" type="checkbox"
-                               onchange="toggleUser(${user.id})">
-                        ${user.userName} (${user.email})
+                    <div class="user-option">
+                        <input type="checkbox"
+                            id="user-checkbox-${user.id}"
+                            onchange="toggleUser(${user.id})">
+                        <span class="user-name">${user.userName}</span>
                     </div>
                 `;
             });
@@ -94,7 +95,7 @@ function updateSelectedList() {
     }
     Array.from(selectedUserIds).forEach(id => {
         const user = usersMap[id];
-        const text = user ? `${user.userName} (${user.email})` : `User ${id}`;
+        const text = user ? `${user.userName}` : `User ${id}`;
         container.innerHTML += `<div>${text}</div>`;
     });
 }
@@ -136,21 +137,31 @@ function submitAttendance() {
         return res.text();
     })
     .then(msg => {
-        alert(msg);
+    showToast(msg); // or alert(msg) if you prefer
 
-        // clear selections
-        selectedUserIds.clear();
-        updateSelectedList();
-
-        // clear checkboxes
-        document.querySelectorAll('[id^="user-checkbox-"]').forEach(cb => cb.checked = false);
-
-        // reset admin select
-        adminSelect.value = '';
-        toggleSubmit();
-    })
+    // Refresh page after short delay so user sees success message
+    setTimeout(() => {
+        window.location.reload();
+    }, 1500);
+})
     .catch(err => {
         console.error(err);
         alert('Failed to submit attendance: ' + err.message);
     });
 }
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+    }
+});

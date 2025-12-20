@@ -1,8 +1,8 @@
 package com.rooney.nitiyoga.enums;
 
 public enum Admins {
-    NITI,
+    NITIGYA,
     REENA,
     AMRUTHA,
-    SHAHEEN
+    SHAHIN
 }
