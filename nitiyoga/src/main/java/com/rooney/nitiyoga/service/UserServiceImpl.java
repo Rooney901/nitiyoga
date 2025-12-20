@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
             existing.setFeeStatus(user.getFeeStatus());
         }
         // boolean primitive - update explicitly
-        existing.setActive(user.isActive());
+        existing.setActive(user.getActive());
 
         return userRepository.save(existing);
     }

@@ -3,6 +3,7 @@ package com.rooney.nitiyoga.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.rooney.nitiyoga.enums.ActiveStatus;
 import com.rooney.nitiyoga.enums.FeeStatus;
 import com.rooney.nitiyoga.enums.Gender;
 
@@ -50,7 +51,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private FeeStatus feeStatus;
 
-    private boolean active;
+    @Enumerated(EnumType.STRING)
+    private ActiveStatus active;
 
     private LocalDateTime createdAt;
 }

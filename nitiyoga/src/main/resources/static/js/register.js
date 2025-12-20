@@ -9,7 +9,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
         gender: document.getElementById("gender").value,
         medicalIssues: document.getElementById("medicalIssues").value,
         feeStatus: "UNPAID",
-        active: true
+        active: "YES"
     };
 
     fetch("http://localhost:8080/users", {

@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rooney.nitiyoga.entity.User;
 import com.rooney.nitiyoga.service.UserService;
 
-import jakarta.transaction.Transactional;
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
