@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Nitiyoga – Balance Your Life</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
@@ -13,6 +17,7 @@
             text-align: center;
         }
 
+        /* Floating background images */
         .floating-bg img {
             position: absolute;
             width: 1000px;
@@ -23,7 +28,6 @@
             left: 10%;
             transform: translateX(-50%);
         }
-
 
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
@@ -77,7 +81,7 @@
             justify-content: center;
             gap: 30px;
             flex-wrap: wrap;
-            margin-bottom: 100px; /* leave space for users link */
+            margin-bottom: 100px;
         }
 
         .card {
@@ -109,6 +113,11 @@
         footer {
             font-size: 14px;
             color: #555;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
         }
 
         .created-by {
@@ -137,21 +146,113 @@
             background: #2ecc71;
             transform: scale(1.05);
         }
+
+        /* Admin Tab Top Right */
+        .top-right-nav {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 10;
+        }
+
+        .top-right-nav .admin-tab {
+            font-family: 'Merriweather', serif;
+            font-size: 16px;
+            color: #27ae60;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .top-right-nav .admin-tab:hover {
+            background: #27ae60;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Back to Home link (for Admin page) */
+        .back-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            background: #2ecc71;
+            transform: scale(1.05);
+        }
+
+        /* ----------------- RESPONSIVE ----------------- */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 48px;
+            }
+            header p {
+                font-size: 18px;
+            }
+            .card {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 36px;
+            }
+            header p {
+                font-size: 16px;
+            }
+            .features {
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 50px;
+            }
+            .card {
+                width: 80%;
+                padding: 20px;
+            }
+            .btn {
+                padding: 14px 30px;
+                font-size: 18px;
+            }
+            .floating-bg img {
+                width: 80%;
+            }
+            .top-right-nav {
+                top: 15px;
+                right: 15px;
+            }
+            .top-right-nav .admin-tab {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
+
     </style>
 </head>
 <body>
 
 <div class="floating-bg">
     <img src="images/yoga1.jpg">
-    <!-- <img src="images/yoga2.jpg"> 
-    <img src="images/yoga3.jpg">-->
 </div>
 
 <header>
     <h1>Nitiyoga 🧘</h1>
     <p>Discipline • Wellness • Inner Balance</p>
+
+    <!-- Admin Tab -->
     <div class="top-right-nav">
-    <a href="admin.html" class="admin-tab">Admin</a>
+        <a href="admin.html" class="admin-tab">Admin</a>
     </div>
 </header>
 
@@ -172,19 +273,16 @@
     </div>
 </section>
 
-<!-- Include a classy serif font -->
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-
-<footer style="text-align: center; padding: 20px; background: rgba(0,0,0,0.5); color: #fff; font-family: 'Poppins', sans-serif;">
+<footer>
     © 2026 Nitiyoga. All Rights Reserved.
-    <div class="created-by" style="margin-top: 5px; font-size: 14px;">
+    <div class="created-by">
         Created by 
         <a href="https://www.linkedin.com/in/raunak-gupta-911027159" target="_blank" 
            style="
-               font-family: 'Merriweather', serif; /* classy and elegant */
+               font-family: 'Merriweather', serif;
                font-size: 14px;
-               color: #333333;  /* dark, elegant color */
-               font-weight: 700; /* bold but classy */
+               color: #333333;
+               font-weight: 700;
                text-decoration: underline;
                transition: color 0.3s, text-shadow 0.3s;
            "
@@ -195,8 +293,6 @@
         </a>
     </div>
 </footer>
-
-
 
 <a href="users.html" class="users-link">View All Users</a>
 
