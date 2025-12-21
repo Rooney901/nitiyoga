@@ -1,7 +1,5 @@
 package com.rooney.nitiyoga.dto;
 
-import java.io.Serial;
-
 import lombok.Getter;
 import lombok.Setter;
 
