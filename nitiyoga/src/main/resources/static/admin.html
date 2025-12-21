@@ -3,32 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin – Nitiyoga</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f0f5f5;
-            text-align: center;
             margin: 0;
-            padding: 50px;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #f1f8e9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #2c3e50;
         }
+
+        .admin-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
         h1 {
-            color: #27ae60;
+            color: #1e8449;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 30px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #27ae60;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #27ae60;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background: #2ecc71;
+            transform: scale(1.03);
+        }
+
+        .admin-actions {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .admin-actions a {
+            display: block;
+            margin: 12px 0;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .back-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            background: #2ecc71;
         }
     </style>
 </head>
 <body>
+
+<a href="index.html" class="back-home">Back to Home</a>
+
+<div class="admin-card">
     <h1>Admin Dashboard</h1>
-    <p>Welcome to the Admin Page. Here you can manage users, sessions, and more.</p>
+    <p>Enter admin passkey to access management options</p>
 
-      <a href="attendance.html" style="display:inline-block; margin-top:20px; padding:10px 20px; 
-       background:#27ae60; color:white; border-radius:8px; text-decoration:none;">
-        Attendance
-    </a>
+    <!-- Passkey Section -->
+    <div id="authSection">
+        <input type="password" id="passkey" placeholder="Enter Admin Passkey">
+        <button class="btn" onclick="verifyPasskey()">Unlock</button>
+        <div class="error" id="errorMsg">You are not authorized</div>
+    </div>
 
-    <a href="index.html" style="display:inline-block; margin-top:20px; padding:10px 20px; 
-       background:#27ae60; color:white; border-radius:8px; text-decoration:none;">
-        Back to Home
-    </a>
+    <!-- Admin Options -->
+    <div class="admin-actions" id="adminActions">
+        <a href="users.html" class="btn">🧘 Manage Yogis</a>
+        <a href="attendance.html" class="btn">📅 Attendance</a>
+    </div>
+</div>
+
+<script>
+function verifyPasskey() {
+    const passkey = document.getElementById("passkey").value;
+    const errorMsg = document.getElementById("errorMsg");
+
+    fetch("/api/admin/verify-passkey", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passkey })
+    })
+    .then(res => {
+        if (res.ok) {
+            // Hide passkey section
+            document.getElementById("authSection").style.display = "none";
+
+            // Show admin actions
+            document.getElementById("adminActions").style.display = "block";
+
+            errorMsg.style.display = "none";
+        } else {
+            errorMsg.style.display = "block";
+        }
+    });
+}
+</script>
+
 </body>
 </html>
